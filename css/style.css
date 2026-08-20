@@ -139,6 +139,35 @@ nav{
     transform: translate(-5px);
 }
 
+.statistics{
+    padding: 70px 50px;
+}
+
+.stats-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+
+}
+
+.stat-card{
+    text-align: center;
+    padding: 30px;
+    background-color: #f1f5f9;
+}
+
+.stat-card h3{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.stat-card p{
+    font-size: 18px;
+}
+
+
 
 @media (max-width: 768px) {
 
@@ -146,4 +175,7 @@ nav{
         grid-template-columns: 1fr;
     }
 
+    .stats-grid{
+        grid-template-columns: 1fr;
+    }
 }
