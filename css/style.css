@@ -204,7 +204,8 @@ nav{
 .club-card{
     background-color: #f1f5f9;
     border-radius: 10px;
-    padding: 30px;
+    
+    overflow: hidden;
     transition: transform 0.3s ease;
 }
 
@@ -229,6 +230,16 @@ nav{
     font-weight: bold;
 }
 
+.club-image{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+}
+
+.club-card-content{
+    padding: 25px;
+}
 
 
 /******************************************/
@@ -242,7 +253,7 @@ nav{
         grid-template-columns: 1fr;
     }
 
-
+    /* for footer part */
     
     .clubs-grid {
     grid-template-columns: 1fr;
