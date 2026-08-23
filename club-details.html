@@ -15,24 +15,33 @@
         <section class="club-details">
           
             <div class="club-details-image">
-          
+                <!--- 
                 <img src="images/cl1.jpg" 
                 alt="BISKRA CITY Logo">
+                -->
+                <img
+                    id="club-image"
+                    src=""
+                    alt=""
+                >
           
             </div>
           
             <div class="club-details-content">
-          
-                <h1>Biskra FC</h1>
+                
+
+                <h1 id="club-name">Biskra FC</h1>
           
                 <p>Biskra CITY is a football club based in biskra</p>
           
                 <div class="club-info">
-                    <p>
-                        <strong>City:</strong>Biskra
+                    <p >
+                        <strong>City:</strong>
+                        <span id="club-city"></span>
                     </p>
                     <p>
-                        <strong>Sport:</strong>Football
+                        <strong>Sport:</strong>
+                        <span id="club-sport"></span>
                     </p>
                     <p>
                         <strong>Founded:</strong>1990
@@ -51,8 +60,23 @@
         </section>
 
     </main>
-    <footer>
-
+    <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    Sports DZ
+                </div>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="clubs.html">Clubs</a></li>
+                    <li><a href="#">Players</a></li>
+                    <li><a href="#">Matches</a></li>
+                </ul>
+                <p class ="copyright">
+                    @ 2026 Sports DZ. All rights reserved.
+                </p>
+            </div>
     </footer>
+    <script src="js/main.js"></script>
+
 </body>
 </html>
