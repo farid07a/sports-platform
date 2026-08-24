@@ -290,6 +290,31 @@ nav{
 .club-card a:hover{
     opacity: 0.7;
 }
+
+.clubs-search {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.clubs-search input,
+.clubs-search select {
+    padding: 14px 18px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.clubs-search input {
+    flex: 1;
+}
+
+.clubs-search select {
+    width: 180px;
+    background-color: white;
+}
 /***************Club details****************/
 
 .club-details {

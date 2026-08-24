@@ -33,17 +33,14 @@ const clubs=[
 
 
 
-
-function renderClubs() {
-    const clubGrid = document.querySelector(".clubs-grid")
-
-
-if (clubGrid) {
-  console.log(clubGrid); // Runs if the element exists
-   console.log(clubGrid);
+const clubGrid = document.querySelector(".clubs-grid");
+const clubName = document.getElementById("club-name");
 
 
-    clubs.forEach(item => {
+function renderClubs(clubsToRender) {
+
+    clubGrid.innerHTML = "";
+    clubsToRender.forEach(item => {
         const card = document.createElement("article");
         card.classList.add("club-card");
         card.innerHTML = `
@@ -67,13 +64,10 @@ if (clubGrid) {
 
             </div>
         `;
-
         clubGrid.appendChild(card);
     });
-
 }
 
-}
 
 function renderClubDetails(){
     
@@ -83,10 +77,12 @@ function renderClubDetails(){
 
     const selectedClub = clubs.find(item => item.id === clubId);
 
+    if(!selectedClub){
+        console.log("Club not found");
+        return;
+    }
     console.log(selectedClub);
 
-
-    const clubName = document.getElementById("club-name");
     const clubCity = document.getElementById("club-city");
     const clubSport = document.getElementById("club-sport");
     const clubImage = document.getElementById("club-image");
@@ -96,8 +92,54 @@ function renderClubDetails(){
     clubSport.textContent = selectedClub.sport;
     clubImage.src = selectedClub.image;
     clubImage.alt = selectedClub.name;
+}
+
+
+if(clubGrid){
+    renderClubs(clubs);
+}
+if (clubName){
+    renderClubDetails();
+}
+
+
+const searchInput = document.getElementById("club-search");
+
+if(searchInput){
+
+    searchInput.addEventListener("input", () => {
+        const searchText = searchInput.value.toLowerCase();
+        const filteredClubs = clubs.filter(item =>
+            item.name.toLowerCase().includes(searchText)
+        );
+        renderClubs(filteredClubs);
+    });
+}
+
+const sportFilter = document.getElementById("sport-filter");
+
+if (sportFilter) {
+
+    sportFilter.addEventListener("change", () => {
+
+        const selectedSport = sportFilter.value;
+
+        const filteredClubs = clubs.filter(item => {
+
+            if (selectedSport === "all") {
+                return true;
+            }
+
+            return item.sport.toLowerCase() === selectedSport;
+
+        });
+
+        renderClubs(filteredClubs);
+
+    });
 
 }
+
 
 
 /*
