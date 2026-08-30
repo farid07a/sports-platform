@@ -40,6 +40,18 @@ const clubName = document.getElementById("club-name");
 function renderClubs(clubsToRender) {
 
     clubGrid.innerHTML = "";
+
+    const noClubsMessage =
+        document.getElementById("no-clubs-message");
+
+    if (clubsToRender.length === 0) {
+        noClubsMessage.style.display = "block";
+    } 
+    else {
+        noClubsMessage.style.display = "none";
+    }
+
+
     clubsToRender.forEach(item => {
         const card = document.createElement("article");
         card.classList.add("club-card");
@@ -96,6 +108,7 @@ function renderClubDetails(){
 
 
 if(clubGrid){
+
     renderClubs(clubs);
 }
 if (clubName){

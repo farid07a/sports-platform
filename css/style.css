@@ -315,6 +315,14 @@ nav{
     width: 180px;
     background-color: white;
 }
+
+.no-clubs-message{
+    text-align: center;
+    margin: 30px 0;
+    font-size: 18px;
+    display: none;
+}
+
 /***************Club details****************/
 
 .club-details {
