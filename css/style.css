@@ -323,6 +323,48 @@ nav{
     display: none;
 }
 
+
+.club-not-found {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+
+.club-players {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.club-players h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.players-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.player-card {
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.player-card h3 {
+    margin-bottom: 10px;
+}
+
+.player-card p {
+    margin: 0;
+}
+
 /***************Club details****************/
 
 .club-details {
@@ -337,9 +379,12 @@ nav{
 
 .club-details-image img {
     width: 100%;
+    max-width: 400px;
     aspect-ratio: 1 / 1;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
+    display: block;
+    margin: 0 auto;
 }
 
 .club-details-content h1{
@@ -370,10 +415,81 @@ nav{
     border-radius: 6px;
     transition: background-color 0.3s ease;
 }
+
 .details-button:hover {
     background-color: #334155;
 }
 
+/*****************************************/
+.club-players {
+    max-width: 1100px;
+    margin: 0 auto 70px;
+    padding: 0 50px;
+}
+
+.club-players h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.players-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.player-card {
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.player-card h3 {
+    margin-bottom: 10px;
+}
+
+.player-card p {
+    margin: 0;
+}
+/******************************************/
+.club-matches {
+    max-width: 1100px;
+    margin: 0 auto 70px;
+    padding: 0 50px;
+}
+
+.club-matches h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.matches-list {
+    display: grid;
+    gap: 20px;
+}
+
+.match-card {
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+}
+
+.match-card h3 {
+    margin-bottom: 15px;
+}
+
+.match-card p {
+    margin-bottom: 8px;
+}
+
+
+.empty-message {
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+}
 /******************************************/
 @media (max-width: 768px) {
 
@@ -398,5 +514,9 @@ nav{
     .club-details{
         grid-template-columns: 1fr;
         padding: 50px 20px;
+    }
+    
+    .club-players {
+        padding: 0 20px;
     }
 }
