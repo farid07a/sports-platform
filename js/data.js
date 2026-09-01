@@ -1,33 +1,28 @@
-const clubs = [
+
+const clubs=[
     {
-        id: 1,
-        name: "Biskra FC",
-        city: "Biskra",
-        sport: "Football",
-        image: "images/club-placeholder.jpg"
+        id:1,
+        name:"Biskra CITY",
+        city:"Biskra",
+        sport:"Football",
+        image: "images/cl1.jpg"
+
     },
     {
-        id: 2,
-        name: "Olympic Club",
-        city: "Biskra",
-        sport: "Football",
-        image: "images/club-placeholder.jpg"
+        id:2,
+        name:"Batna USB",
+        city:"Batna",
+        sport:"Tennis",
+        image: "images/cl2.jpg"
     },
     {
-        id: 3,
-        name: "US Biskra",
-        city: "Biskra",
-        sport: "Football",
-        image: "images/club-placeholder.jpg"
-    },
-    {
-        id: 4,
-        name: "Biskra Kickboxing Club",
-        city: "Biskra",
-        sport: "Kickboxing",
-        image: "images/club-placeholder.jpg"
+        id:3,
+        name:"JSD",
+        city:"Djemorah",
+        sport:"KickBoxing",
+        image: "images/cl3.jpg"
     }
-];
+]
 
 
 const players = [

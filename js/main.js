@@ -84,8 +84,6 @@ const matches = [
 
 
 const clubGrid = document.querySelector(".clubs-grid");
-const clubName = document.getElementById("club-name");
-
 
 function renderClubs(clubsToRender) {
 
@@ -100,11 +98,11 @@ function renderClubs(clubsToRender) {
     else {
         noClubsMessage.style.display = "none";
     }
-
-
     clubsToRender.forEach(item => {
         const card = document.createElement("article");
         card.classList.add("club-card");
+        console.log(item.image);
+
         card.innerHTML = `
         <img
             src="${item.image}"
@@ -130,7 +128,7 @@ function renderClubs(clubsToRender) {
     });
 }
 
-
+const clubName = document.getElementById("club-name");
 function renderClubDetails(){
     
     const params = new URLSearchParams(window.location.search);
@@ -154,7 +152,6 @@ function renderClubDetails(){
     detailsSection.style.display="block";
     notFound.style.display = "none";
         
-
     //  console.log(selectedClub);
 
     const clubCity = document.getElementById("club-city");
