@@ -20,7 +20,7 @@ function renderClubs(clubsToRender) {
         const card = document.createElement("article");
 
         card.classList.add("club-card");
-
+        console.log("Image Path is:"+item.image)
         card.innerHTML = `
             <img
                 src="${item.image}"
@@ -39,10 +39,9 @@ function renderClubs(clubsToRender) {
                 <a href="club-details.html?id=${item.id}">
                     View Club
                 </a>
-
             </div>
         `;
-
+        
         clubGrid.appendChild(card);
     });
 }

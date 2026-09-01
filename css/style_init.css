@@ -1,0 +1,522 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    background-color: #1e293b;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+
+}
+
+.logo{
+    color:white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links{
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a , .nav-actions a {
+    text-decoration: none;
+    color: white;
+}
+
+/*
+أما min-height:
+أريد أن يكون ارتفاعه على الأقل بهذا المقدار، ويمكنه أن يكبر إذا احتاج المحتوى.
+*/
+
+.hero{
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2e8f0;
+}
+
+.hero-content{
+    text-align: center;
+    max-width: 700px;
+}
+
+.hero-content h1{
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-content p{
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero-button{
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #1e293b;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease,
+                transform 0.3s ease;
+}
+
+.hero-button:hover{
+    background-color: #334155;
+    transform: translateY(-2px);
+}
+
+.nav-links a{
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover{
+    opacity: 0.7;
+}
+
+.sports{
+    padding: 70px 50px;
+}
+
+.section-header{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2{
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.section-header p{
+    font-size: 16px;
+}
+
+.sports-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.sport-card{
+    padding: 30px;
+    /*background-color: #f1f5f9;*/
+    background-color: #f1f5;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.sport-card h3{
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.sport-card p{
+    margin-bottom: 20px;
+}
+
+.sport-card a{
+    color: #1e293b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sport-card:hover{
+    transform: translate(-5px);
+}
+
+.statistics{
+    padding: 70px 50px;
+}
+
+.stats-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+
+}
+
+.stat-card{
+    text-align: center;
+    padding: 30px;
+    background-color: #f1f9;
+    /*background-color: #f1f5f9;*/
+}
+
+.stat-card h3{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.stat-card p{
+    font-size: 18px;
+}
+/*********footer page **********************/
+
+
+.footer{
+    background-color: #1e293b;
+    color: white;
+    padding: 40px 50px;
+}
+
+.footer-content{
+    text-align: center;
+}
+
+.footer-logo{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    /*background-color: red;*/
+}
+
+.footer-links{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    list-style: none;
+    margin-bottom: 20px;
+    /*background-color: green;*/
+}
+
+.footer-links a{
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links a:hover{
+    opacity: 0.7;
+}
+
+.copyright{
+    font-size: 14px;
+}
+
+
+/***************page Clubs******************/
+.page-header{
+    /* h1 and p is effected*/
+    text-align: center;
+   
+    /* h1 and p not concerned*/
+    padding: 60px 20px 40px;  
+      
+}
+
+.page-header h1{
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.page-header p{
+    font-size: 18px;
+}
+
+.club-section{
+    padding: 20px 50px 70px;;
+}
+
+.clubs-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px; ;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.club-card{
+    background-color: #f1f5f9;
+    border-radius: 10px;
+    
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.club-card:hover{
+    transform: translateY(-5px);
+}
+
+.club-card h2{
+     font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.club-card p {
+    margin-bottom: 10px;
+}
+
+.club-card a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #1e293b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.club-image{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+}
+
+.club-card-content{
+    padding: 25px;
+}
+
+.club-card a{
+    transition: opacity 0.3s ease; ;
+}
+
+.club-card a:hover{
+    opacity: 0.7;
+}
+
+.clubs-search {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.clubs-search input,
+.clubs-search select {
+    padding: 14px 18px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.clubs-search input {
+    flex: 1;
+}
+
+.clubs-search select {
+    width: 180px;
+    background-color: white;
+}
+
+.no-clubs-message{
+    text-align: center;
+    margin: 30px 0;
+    font-size: 18px;
+    display: none;
+}
+
+
+.club-not-found {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+
+.club-players {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.club-players h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.players-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.player-card {
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.player-card h3 {
+    margin-bottom: 10px;
+}
+
+.player-card p {
+    margin: 0;
+}
+
+/***************Club details****************/
+
+.club-details {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.club-details-image img {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+.club-details-content h1{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.club-details-content > p{
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.club-info{
+    margin-bottom: 30px;
+}
+
+.club-info p{
+    margin-bottom: 10px;    
+}
+
+.details-button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-right: 10px;
+    background-color: #1e293b;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+    background-color: #334155;
+}
+
+/*****************************************/
+.club-players {
+    max-width: 1100px;
+    margin: 0 auto 70px;
+    padding: 0 50px;
+}
+
+.club-players h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.players-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.player-card {
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.player-card h3 {
+    margin-bottom: 10px;
+}
+
+.player-card p {
+    margin: 0;
+}
+/******************************************/
+.club-matches {
+    max-width: 1100px;
+    margin: 0 auto 70px;
+    padding: 0 50px;
+}
+
+.club-matches h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.matches-list {
+    display: grid;
+    gap: 20px;
+}
+
+.match-card {
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+}
+
+.match-card h3 {
+    margin-bottom: 15px;
+}
+
+.match-card p {
+    margin-bottom: 8px;
+}
+
+
+.empty-message {
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+}
+/******************************************/
+@media (max-width: 768px) {
+
+    .sports-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid{
+        grid-template-columns: 1fr;
+    }
+
+    /* for footer part */
+    .footer-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .clubs-grid {
+    grid-template-columns: 1fr;
+    }
+
+    .club-details{
+        grid-template-columns: 1fr;
+        padding: 50px 20px;
+    }
+    
+    .club-players {
+        padding: 0 20px;
+    }
+}

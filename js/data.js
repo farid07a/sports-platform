@@ -24,31 +24,37 @@ const clubs=[
     }
 ]
 
-
 const players = [
     {
         id: 1,
-        firstName: "Ahmed",
-        lastName: "Ben Ali",
         clubId: 1,
-        position: "Forward"
+        firstName: "Ahmed",
+        lastName: "Ali",
+        position: "Forward",
+        birthDate: "2002-05-10",
+        image: "images/players/player-1.jpeg"
     },
+
     {
         id: 2,
-        firstName: "Karim",
-        lastName: "Messaoud",
         clubId: 1,
-        position: "Midfielder"
+        firstName: "Mohamed",
+        lastName: "Salah",
+        position: "Midfielder",
+        birthDate: "2001-08-20",
+        image: "images/players/player-2.jpg"
     },
+
     {
         id: 3,
-        firstName: "Yacine",
-        lastName: "Brahimi",
         clubId: 2,
-        position: "Defender"
+        firstName: "Karim",
+        lastName: "Ben",
+        position: "Defender",
+        birthDate: "2003-01-15",
+        image: "images/players/player-3.jpg"
     }
 ];
-
 
 const matches = [
     {

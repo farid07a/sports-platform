@@ -1,522 +1,1133 @@
-*{
+
+/* =========================================================
+   GLOBAL / RESET
+   ========================================================= */
+
+/*
+   * تعني جميع عناصر HTML.
+
+   box-sizing: border-box:
+   يجعل width و height يشملان padding و border.
+   هذا يجعل حساب أحجام العناصر أسهل.
+
+   margin: 0 و padding: 0:
+   نزيل المسافات الافتراضية التي يضعها المتصفح،
+   ثم نحدد نحن المسافات التي نحتاجها.
+*/
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
 }
 
-body{
+
+/*
+   تحديد الخط الأساسي للصفحة.
+
+   إذا لم يكن Arial موجوداً، يحاول المتصفح استخدام
+   Helvetica، وإذا لم توجد يستخدم أي خط sans-serif.
+*/
+body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-header{
+
+/* =========================================================
+   HEADER / NAVIGATION
+   ========================================================= */
+
+header {
     background-color: #1e293b;
 }
 
-nav{
+
+/*
+   display: flex
+   يجعل العناصر الموجودة داخل nav في صف واحد.
+
+   justify-content: space-between
+   يضع أول عنصر في بداية المساحة وآخر عنصر في نهايتها.
+
+   align-items: center
+   يجعل العناصر متوسطة عمودياً.
+
+   padding: 20px 50px
+   20px = أعلى وأسفل
+   50px = يمين ويسار
+*/
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-
 }
 
-.logo{
-    color:white;
+
+/* Logo الخاص بالموقع */
+.logo {
+    color: white;
     font-size: 24px;
     font-weight: bold;
 }
 
-.nav-links{
+
+/*
+   nav-links عبارة عن قائمة.
+
+   display: flex
+   يجعل عناصر القائمة بجانب بعضها.
+
+   list-style: none
+   يلغي النقاط الافتراضية للقائمة.
+
+   gap
+   يحدد المسافة بين عناصر القائمة.
+*/
+.nav-links {
     display: flex;
     list-style: none;
     gap: 25px;
 }
 
-.nav-links a , .nav-actions a {
+
+/*
+   إزالة الخط الموجود أسفل الرابط
+   وتغيير لون الرابط إلى الأبيض.
+*/
+.nav-links a,
+.nav-actions a {
     text-decoration: none;
     color: white;
 }
 
-/*
-أما min-height:
-أريد أن يكون ارتفاعه على الأقل بهذا المقدار، ويمكنه أن يكبر إذا احتاج المحتوى.
-*/
 
-.hero{
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+
+/*
+   min-height: 500px
+
+   min-height تعني أن العنصر لن يكون ارتفاعه أقل
+   من 500px، لكنه يستطيع أن يكبر إذا احتاج
+   المحتوى إلى مساحة أكبر.
+
+   display: flex
+   نستخدم Flexbox لترتيب محتوى الـ Hero.
+
+   justify-content: center
+   توسيط المحتوى أفقياً.
+
+   align-items: center
+   توسيط المحتوى عمودياً.
+*/
+.hero {
     min-height: 500px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     background-color: #e2e8f0;
 }
 
-.hero-content{
+
+
+/*
+   max-width: 700px
+
+   يمنع المحتوى من أن يصبح عريضاً جداً.
+
+   هذا مفيد خصوصاً للنصوص حتى تبقى سهلة القراءة.
+*/
+.hero-content {
     text-align: center;
     max-width: 700px;
 }
 
-.hero-content h1{
+
+.hero-content h1 {
     font-size: 48px;
     margin-bottom: 20px;
 }
 
-.hero-content p{
+
+.hero-content p {
     font-size: 18px;
     margin-bottom: 30px;
 }
 
-.hero-button{
+
+/*
+   display: inline-block
+
+   يجعل الرابط يتصرف كعنصر يمكننا التحكم
+   في padding و margin الخاص به.
+
+   transition
+
+   يجعل التغيير عند hover سلساً بدلاً
+   من حدوثه بشكل مفاجئ.
+*/
+.hero-button {
     display: inline-block;
+
     padding: 12px 25px;
+
     background-color: #1e293b;
     color: white;
+
     text-decoration: none;
+
     border-radius: 6px;
-    transition: background-color 0.3s ease,
-                transform 0.3s ease;
+
+    /*
+       مدة الحركة 0.3 ثانية.
+
+       background-color:
+       انتقال سلس في لون الخلفية.
+
+       transform:
+       انتقال سلس في حركة العنصر.
+    */
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
 }
 
-.hero-button:hover{
+
+/*
+   :hover
+
+   يتم تطبيقه عندما يضع المستخدم
+   مؤشر الفأرة فوق العنصر.
+*/
+.hero-button:hover {
     background-color: #334155;
+
+    /*
+       translateY(-2px)
+
+       يحرك العنصر إلى الأعلى بمقدار 2px.
+
+       القيم السالبة في Y تعني الأعلى.
+    */
     transform: translateY(-2px);
 }
 
-.nav-links a{
+
+/*
+   transition تجعل تغيير opacity سلساً.
+*/
+.nav-links a {
     transition: opacity 0.3s ease;
 }
 
-.nav-links a:hover{
+
+/*
+   opacity: 0.7
+
+   تجعل الرابط أقل وضوحاً قليلاً عند hover.
+*/
+.nav-links a:hover {
     opacity: 0.7;
 }
 
-.sports{
+
+/* =========================================================
+   SPORTS SECTION
+   ========================================================= */
+
+.sports {
     padding: 70px 50px;
 }
 
-.section-header{
+
+/*
+   عنوان القسم والنص الموجود تحته.
+*/
+.section-header {
     text-align: center;
     margin-bottom: 40px;
 }
 
-.section-header h2{
+
+.section-header h2 {
     font-size: 36px;
     margin-bottom: 10px;
 }
 
-.section-header p{
+
+.section-header p {
     font-size: 16px;
 }
 
-.sports-grid{
+
+/*
+   نستخدم CSS Grid لأننا نريد عرض البطاقات
+   في صفوف وأعمدة.
+
+   repeat(3, 1fr)
+
+   3  = ثلاثة أعمدة.
+
+   1fr = كل عمود يأخذ جزءاً متساوياً
+   من المساحة المتاحة.
+*/
+.sports-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
+
+    /*
+       المسافة بين البطاقات.
+    */
     gap: 25px;
 }
 
-.sport-card{
+
+/* بطاقة الرياضة */
+.sport-card {
     padding: 30px;
-    /*background-color: #f1f5f9;*/
-    background-color: #f1f5;
+
+    /*
+       لون خلفية البطاقة.
+    */
+    background-color: #f1f5f9;
+
+    /*
+       تدوير زوايا البطاقة.
+    */
     border-radius: 10px;
+
+    /*
+       يجعل حركة البطاقة عند hover سلسة.
+    */
     transition: transform 0.3s ease;
 }
 
-.sport-card h3{
+
+.sport-card h3 {
     font-size: 24px;
     margin-bottom: 15px;
 }
 
-.sport-card p{
+
+.sport-card p {
     margin-bottom: 20px;
 }
 
-.sport-card a{
+
+.sport-card a {
     color: #1e293b;
     text-decoration: none;
     font-weight: bold;
 }
 
-.sport-card:hover{
-    transform: translate(-5px);
+
+/*
+   translateY(-5px)
+
+   عند وضع الفأرة فوق البطاقة،
+   تتحرك البطاقة إلى الأعلى 5px.
+*/
+.sport-card:hover {
+    transform: translateY(-5px);
 }
 
-.statistics{
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
+
+.statistics {
     padding: 70px 50px;
 }
 
-.stats-grid{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 25px;
-    max-width: 900px;
-    margin: 0 auto;
 
+/*
+   Grid للإحصائيات.
+
+   repeat(3, 1fr)
+   ثلاثة أعمدة متساوية.
+
+   max-width: 900px
+   يمنع الـ Grid من أن يصبح عريضاً جداً.
+
+   margin: 0 auto
+   يجعل الـ Grid في المنتصف.
+*/
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+    max-width: 900px;
+
+    margin: 0 auto;
 }
 
-.stat-card{
+
+.stat-card {
     text-align: center;
     padding: 30px;
-    background-color: #f1f9;
-    /*background-color: #f1f5f9;*/
+
+    background-color: #f1f5f9;
 }
 
-.stat-card h3{
+
+.stat-card h3 {
     font-size: 40px;
     margin-bottom: 10px;
 }
 
-.stat-card p{
+
+.stat-card p {
     font-size: 18px;
 }
-/*********footer page **********************/
 
 
-.footer{
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
     background-color: #1e293b;
     color: white;
+
     padding: 40px 50px;
 }
 
-.footer-content{
+
+.footer-content {
     text-align: center;
 }
 
-.footer-logo{
+
+.footer-logo {
     font-size: 24px;
     font-weight: bold;
+
     margin-bottom: 20px;
-    /*background-color: red;*/
 }
 
-.footer-links{
+
+/*
+   Footer links.
+
+   Flexbox يجعل الروابط في صف واحد.
+
+   justify-content: center
+   يجعلها في المنتصف.
+
+   gap
+   يحدد المسافة بينها.
+*/
+.footer-links {
     display: flex;
     justify-content: center;
+
     gap: 25px;
+
     list-style: none;
+
     margin-bottom: 20px;
-    /*background-color: green;*/
 }
 
-.footer-links a{
+
+.footer-links a {
     color: white;
     text-decoration: none;
 }
 
-.footer-links a:hover{
+
+.footer-links a:hover {
     opacity: 0.7;
 }
 
-.copyright{
+
+.copyright {
     font-size: 14px;
 }
 
 
-/***************page Clubs******************/
-.page-header{
-    /* h1 and p is effected*/
+/* =========================================================
+   CLUBS PAGE
+   ========================================================= */
+
+
+/*
+   page-header يحتوي عادةً على:
+
+   <h1>
+   <p>
+
+   padding هنا يطبق على الـ section نفسه،
+   وليس مباشرة على h1 و p.
+
+   لكن لأن h1 و p موجودان داخل section،
+   فإن المساحة الداخلية تظهر حولهما.
+
+   padding: 60px 20px 40px
+
+   60px = الأعلى
+   20px = اليمين واليسار
+   40px = الأسفل
+*/
+.page-header {
     text-align: center;
-   
-    /* h1 and p not concerned*/
-    padding: 60px 20px 40px;  
-      
+    padding: 60px 20px 40px;
 }
 
-.page-header h1{
+
+.page-header h1 {
     font-size: 40px;
     margin-bottom: 15px;
 }
 
-.page-header p{
+
+.page-header p {
     font-size: 18px;
 }
 
-.club-section{
-    padding: 20px 50px 70px;;
+
+/* =========================================================
+   CLUBS GRID
+   ========================================================= */
+
+.club-section {
+    padding: 20px 50px 70px;
 }
 
-.clubs-grid{
+
+/*
+   عرض Clubs باستخدام CSS Grid.
+
+   repeat(3, 1fr)
+   يعني ثلاثة أعمدة متساوية.
+
+   max-width: 1100px
+   يحدد أكبر عرض للقائمة.
+
+   margin: 0 auto
+   يجعلها في منتصف الصفحة.
+*/
+.clubs-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px; ;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
     max-width: 1100px;
+
     margin: 0 auto;
 }
 
-.club-card{
+
+/* =========================================================
+   CLUB CARD
+   ========================================================= */
+
+.club-card {
     background-color: #f1f5f9;
+
     border-radius: 10px;
-    
+
+    /*
+       يخفي أي جزء من المحتوى يخرج
+       خارج حدود البطاقة.
+
+       مفيد مع border-radius والصور.
+    */
     overflow: hidden;
+
     transition: transform 0.3s ease;
 }
 
-.club-card:hover{
+
+.club-card:hover {
+    /*
+       تحريك البطاقة إلى الأعلى 5px.
+    */
     transform: translateY(-5px);
 }
 
-.club-card h2{
-     font-size: 24px;
+
+.club-card h2 {
+    font-size: 24px;
     margin-bottom: 20px;
 }
+
 
 .club-card p {
     margin-bottom: 10px;
 }
 
+
+/*
+   display: inline-block
+
+   يسمح بالتحكم في padding و margin
+   الخاص بالرابط بشكل أفضل.
+*/
 .club-card a {
     display: inline-block;
+
     margin-top: 15px;
+
     color: #1e293b;
+
     text-decoration: none;
+
     font-weight: bold;
+
+    transition: opacity 0.3s ease;
 }
 
-.club-image{
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    display: block;
-}
 
-.club-card-content{
-    padding: 25px;
-}
-
-.club-card a{
-    transition: opacity 0.3s ease; ;
-}
-
-.club-card a:hover{
+.club-card a:hover {
     opacity: 0.7;
 }
 
+
+/* =========================================================
+   CLUB IMAGE
+   ========================================================= */
+
+/*
+   width: 100%
+   الصورة تأخذ كامل عرض البطاقة.
+
+   aspect-ratio: 16 / 9
+   يحافظ على نسبة عرض إلى ارتفاع 16:9.
+
+   object-fit: cover
+   يجعل الصورة تغطي المساحة كاملة،
+   وقد يقص جزءاً منها إذا كانت النسبة مختلفة.
+
+   display: block
+   يمنع بعض المسافات الصغيرة غير المرغوبة
+   التي يمكن أن تظهر مع الصور inline.
+*/
+.club-image {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+.club-card-content {
+    padding: 25px;
+}
+
+
+/* =========================================================
+   SEARCH / FILTER
+   ========================================================= */
+
 .clubs-search {
+    /*
+       لا نريد أن يصبح شريط البحث عريضاً جداً.
+    */
     max-width: 800px;
+
+    /*
+       0 = margin أعلى
+       auto = توسيط يمين ويسار
+       40px = margin أسفل
+    */
     margin: 0 auto 40px;
+
     padding: 0 20px;
+
+    /*
+       يجعل input و select بجانب بعضهما.
+    */
     display: flex;
+
     gap: 15px;
 }
 
+
+/*
+   نفس التصميم للـ input والـ select.
+*/
 .clubs-search input,
 .clubs-search select {
     padding: 14px 18px;
+
     border: 1px solid #cbd5e1;
+
     border-radius: 8px;
+
     font-size: 16px;
 }
 
+
+/*
+   flex: 1
+
+   يجعل input يأخذ المساحة المتبقية
+   داخل الـ flex container.
+*/
 .clubs-search input {
     flex: 1;
 }
 
+
+/*
+   عرض ثابت نسبياً للـ select.
+*/
 .clubs-search select {
     width: 180px;
+
     background-color: white;
 }
 
-.no-clubs-message{
+
+/*
+   رسالة "No clubs found".
+
+   display: none
+   تعني أنها مخفية في البداية.
+
+   JavaScript يمكنه تغييرها إلى block
+   عندما لا توجد نتائج.
+*/
+.no-clubs-message {
     text-align: center;
+
     margin: 30px 0;
+
     font-size: 18px;
+
     display: none;
 }
 
 
+/* =========================================================
+   CLUB NOT FOUND
+   ========================================================= */
+
+/*
+   هذه الرسالة تظهر عندما يكون id الموجود
+   في URL غير موجود في البيانات.
+
+   مخفية افتراضياً، وJavaScript يظهرها عند الحاجة.
+*/
 .club-not-found {
     display: none;
+
     text-align: center;
+
     padding: 60px 20px;
 }
 
 
-.club-players {
-    max-width: 1100px;
-    margin: 60px auto;
-    padding: 0 20px;
-}
+/* =========================================================
+   CLUB DETAILS
+   ========================================================= */
 
-.club-players h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
+/*
+   نستخدم Grid لأن صفحة التفاصيل تتكون من:
 
-.players-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
+   العمود الأول:
+   صورة النادي
 
-.player-card {
-    padding: 20px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    background: white;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.player-card h3 {
-    margin-bottom: 10px;
-}
-
-.player-card p {
-    margin: 0;
-}
-
-/***************Club details****************/
-
+   العمود الثاني:
+   معلومات النادي
+*/
 .club-details {
     max-width: 1100px;
+
+    /*
+       توسيط القسم في الصفحة.
+    */
     margin: 0 auto;
+
+    /*
+       مساحة داخلية حول المحتوى.
+    */
     padding: 70px 50px;
+
     display: grid;
+
+    /*
+       عمودان متساويان.
+    */
     grid-template-columns: 1fr 1fr;
+
+    /*
+       المسافة بين الصورة والمعلومات.
+    */
     gap: 50px;
+
+    /*
+       محاذاة العناصر عمودياً في المنتصف.
+    */
     align-items: center;
 }
 
+
+/*
+   صورة الـ Logo في صفحة Details.
+
+   width: 100%
+   تسمح للصورة باستخدام مساحة العمود.
+
+   max-width: 400px
+   تمنع الصورة من أن تصبح كبيرة جداً.
+
+   aspect-ratio: 1 / 1
+   تجعل المنطقة مربعة.
+
+   object-fit: contain
+   يعرض الصورة كاملة بدون قص.
+
+   margin: 0 auto
+   يضع الصورة في المنتصف.
+*/
 .club-details-image img {
     width: 100%;
+
     max-width: 400px;
+
     aspect-ratio: 1 / 1;
+
     object-fit: contain;
+
     border-radius: 10px;
+
     display: block;
+
     margin: 0 auto;
 }
 
-.club-details-content h1{
+
+.club-details-content h1 {
     font-size: 40px;
     margin-bottom: 20px;
 }
 
-.club-details-content > p{
+
+/*
+   علامة > تعني "الابن المباشر".
+
+   أي أن هذه القاعدة تطبق على p
+   الموجود مباشرة داخل club-details-content.
+*/
+.club-details-content > p {
     margin-bottom: 30px;
+
+    /*
+       زيادة المسافة بين أسطر النص
+       لتحسين القراءة.
+    */
     line-height: 1.6;
 }
 
-.club-info{
+
+.club-info {
     margin-bottom: 30px;
 }
 
-.club-info p{
-    margin-bottom: 10px;    
+
+.club-info p {
+    margin-bottom: 10px;
 }
+
+
+/* =========================================================
+   DETAILS BUTTON
+   ========================================================= */
 
 .details-button {
     display: inline-block;
+
     padding: 12px 20px;
+
     margin-right: 10px;
+
     background-color: #1e293b;
+
     color: white;
+
     text-decoration: none;
+
     border-radius: 6px;
+
     transition: background-color 0.3s ease;
 }
+
 
 .details-button:hover {
     background-color: #334155;
 }
 
-/*****************************************/
+
+/* =========================================================
+   CLUB PLAYERS
+   ========================================================= */
+
 .club-players {
     max-width: 1100px;
+
+    /*
+       auto يمين ويسار = توسيط القسم.
+
+       70px أسفل = مسافة بعد القسم.
+    */
     margin: 0 auto 70px;
+
     padding: 0 50px;
 }
+
 
 .club-players h2 {
     text-align: center;
     margin-bottom: 30px;
 }
 
+
+/*
+   auto-fit + minmax
+
+   تجعل عدد الأعمدة يتغير حسب مساحة الشاشة.
+
+   minmax(220px, 1fr)
+
+   أقل عرض للبطاقة = 220px.
+
+   وإذا كانت هناك مساحة أكبر،
+   يمكن للبطاقة أن تكبر.
+*/
 .players-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
     gap: 20px;
 }
 
+
+/* بطاقة اللاعب */
 .player-card {
     padding: 20px;
+
     border: 1px solid #e2e8f0;
+
     border-radius: 10px;
+
     text-align: center;
+}
+
+.player-image {
+    width: 100%;
+    height: 220px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
 }
 
 .player-card h3 {
     margin-bottom: 10px;
 }
 
+
 .player-card p {
     margin: 0;
 }
-/******************************************/
+
+
+/* =========================================================
+   CLUB MATCHES
+   ========================================================= */
+
 .club-matches {
     max-width: 1100px;
+
     margin: 0 auto 70px;
+
     padding: 0 50px;
 }
+
 
 .club-matches h2 {
     text-align: center;
     margin-bottom: 30px;
 }
 
+
+/*
+   هنا لا نحتاج تحديد عدد الأعمدة.
+
+   كل Match Card يأخذ سطراً منفرداً.
+*/
 .matches-list {
     display: grid;
+
     gap: 20px;
 }
 
+
 .match-card {
     padding: 20px;
+
     border: 1px solid #e2e8f0;
+
     border-radius: 10px;
-    background: white;
+
+    background-color: white;
 }
+
 
 .match-card h3 {
     margin-bottom: 15px;
 }
+
 
 .match-card p {
     margin-bottom: 8px;
 }
 
 
+/*
+   رسالة تستخدم عندما لا توجد بيانات.
+
+   مثل:
+   No players found.
+   No matches found.
+*/
 .empty-message {
     text-align: center;
+
     padding: 30px;
+
     margin: 0;
 }
-/******************************************/
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+/*
+   Media Query
+
+   هذه القواعد تعمل عندما يكون عرض الشاشة
+   768px أو أقل.
+
+   نستخدمها لتغيير التصميم ليناسب الهاتف
+   والشاشات الصغيرة.
+*/
 @media (max-width: 768px) {
 
+
+    /*
+       Desktop:
+       3 أعمدة
+
+       Mobile:
+       عمود واحد
+    */
     .sports-grid {
         grid-template-columns: 1fr;
     }
 
-    .stats-grid{
+
+    /*
+       Statistics تصبح عمودية على الهاتف.
+    */
+    .stats-grid {
         grid-template-columns: 1fr;
     }
 
-    /* for footer part */
+
+    /*
+       روابط Footer تصبح فوق بعضها
+       بدلاً من وجودها في صف واحد.
+    */
     .footer-links {
         flex-direction: column;
+
         gap: 15px;
     }
-    
+
+
+    /*
+       Clubs:
+
+       Desktop:
+       Club 1 | Club 2 | Club 3
+
+       Mobile:
+       Club 1
+       Club 2
+       Club 3
+    */
     .clubs-grid {
-    grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
 
-    .club-details{
+
+    /*
+       Club Details:
+
+       Desktop:
+       Image | Information
+
+       Mobile:
+       Image
+       Information
+    */
+    .club-details {
         grid-template-columns: 1fr;
+
         padding: 50px 20px;
     }
-    
+
+
+    /*
+       تقليل المسافة الجانبية على الهاتف.
+    */
     .club-players {
         padding: 0 20px;
     }
+
+
+    .club-matches {
+        padding: 0 20px;
+    }
+
+
+    /*
+       Search:
+
+       على الهاتف من الأفضل أن تصبح
+       عناصر البحث فوق بعضها.
+    */
+    .clubs-search {
+        flex-direction: column;
+    }
+
+
+    /*
+       عندما يصبح select تحت input،
+       لا نحتاج إلى عرض ثابت 180px.
+    */
+    .clubs-search select {
+        width: 100%;
+    }
 }
+

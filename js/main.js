@@ -129,6 +129,7 @@ function renderClubs(clubsToRender) {
 }
 
 const clubName = document.getElementById("club-name");
+
 function renderClubDetails(){
     
     const params = new URLSearchParams(window.location.search);
