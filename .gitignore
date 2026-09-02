@@ -1,0 +1,54 @@
+# =========================
+# Java / Spring Boot
+# =========================
+
+# Maven
+backend/target/
+
+# Maven wrapper generated files
+backend/.mvn/timing.properties
+
+# IntelliJ IDEA
+backend/.idea/
+backend/*.iml
+
+# Eclipse
+backend/.classpath
+backend/.project
+backend/.settings/
+
+# VS Code
+.vscode/
+
+# =========================
+# Java
+# =========================
+
+*.class
+
+# =========================
+# Logs
+# =========================
+
+*.log
+
+# =========================
+# Environment / Secrets
+# =========================
+
+backend/.env
+backend/.env.*
+
+# =========================
+# OS generated files
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+# Temporary files
+# =========================
+
+*.tmp
+*.temp
