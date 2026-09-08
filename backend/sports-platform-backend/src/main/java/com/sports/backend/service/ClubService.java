@@ -18,4 +18,10 @@ public class ClubService {
     public List<Club> getAllClubs(){
         return clubRepository.findAll();
     }
+
+    public Club getClubById(Long id) {
+    return clubRepository.findById(id);
+    }
+
+    
 }

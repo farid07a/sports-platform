@@ -8,11 +8,23 @@ import java.util.List;
 @Repository
 public class ClubRepository {
 
-    public List<Club> findAll(){
+    
+     private final List<Club> clubs = List.of(
+            new Club(1L, "Biskra FC", "Biskra", "Football"),
+            new Club(2L, "Biskra Kickboxing", "Biskra", "Kickboxing")
+    );
 
-        return List.of(
-                new Club(1L,"Biskra FC","Biskra","Football"),
-                new Club(1L,"Biskra KickBoxing","Biskra","KickBoxing")
-        );
+    public List<Club> findAll(){
+        return clubs;
     }
+
+    public Club findById(Long id) {
+
+        return clubs.stream()
+                .filter(club -> club.id().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    
 }
