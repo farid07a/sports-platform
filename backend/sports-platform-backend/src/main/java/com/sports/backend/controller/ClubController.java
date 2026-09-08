@@ -25,6 +25,7 @@ public class ClubController {
     public List<Club> getAllClubs(){
         return this.clubService.getAllClubs();
     }
+
 /*
     @GetMapping("/{id}")
     public Club getClubById(@PathVariable Long id) {
@@ -42,5 +43,12 @@ public class ClubController {
     }
 
     return ResponseEntity.ok(club);
+    }
+
+    @GetMapping("/search")
+    public List<Club> searchClubs(@RequestParam String sport) {
+       return clubService.searchBySport(sport);
+    }
+
 
 }

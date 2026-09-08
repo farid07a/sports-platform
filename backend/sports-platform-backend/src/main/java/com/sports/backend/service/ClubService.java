@@ -23,5 +23,9 @@ public class ClubService {
     return clubRepository.findById(id);
     }
 
-    
+    public List<Club> searchBySport(String sport) {
+        return clubRepository.findBySport(sport);
+    }
+
+
 }

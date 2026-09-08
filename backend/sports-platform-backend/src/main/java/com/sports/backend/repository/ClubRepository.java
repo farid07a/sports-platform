@@ -26,5 +26,12 @@ public class ClubRepository {
                 .orElse(null);
     }
 
+
+    public List<Club> findBySport(String sport) {
+
+        return clubs.stream()
+            .filter(club -> club.sport().equalsIgnoreCase(sport))
+            .collect(Collectors.toList());
+    }
     
 }
