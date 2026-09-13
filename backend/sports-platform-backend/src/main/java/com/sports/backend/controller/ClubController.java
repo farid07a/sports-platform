@@ -3,9 +3,7 @@ package com.sports.backend.controller;
 
 import com.sports.backend.model.Club;
 import com.sports.backend.service.ClubService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -47,8 +45,17 @@ public class ClubController {
 
     @GetMapping("/search")
     public List<Club> searchClubs(@RequestParam String sport) {
-       return clubService.searchBySport(sport);
+
+        return clubService.searchBySport(sport);
     }
 
+    @GetMapping("/findCity")
+    public List<Club> searchingClub(@RequestParam String city){
+        return clubService.searchByCity(city);
+    }
 
+    @PostMapping
+    public Club createClub(@RequestBody Club club) {
+        return clubService.createClub(club);
+    }
 }

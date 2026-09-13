@@ -27,5 +27,12 @@ public class ClubService {
         return clubRepository.findBySport(sport);
     }
 
+    public List<Club> searchByCity(String city){
+        return clubRepository.findByCity(city);
+    }
+
+    public Club createClub(Club club) {
+        return clubRepository.save(club);
+    }
 
 }
