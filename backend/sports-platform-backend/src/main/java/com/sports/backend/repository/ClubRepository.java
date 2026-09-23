@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Repository
@@ -48,6 +49,7 @@ public class ClubRepository {
                 .mapToLong(Club::id)
                 .max()
                 .orElse(0) + 1;
+
         Club newClub = new Club(
                 newId,
                 club.name(),
@@ -55,8 +57,24 @@ public class ClubRepository {
                 club.sport()
         );
 
-        clubs.add(club);
-        return club;
+        clubs.add(newClub);
+
+        return newClub;
 
     }
+
+    public Club update(Long id,Club club){
+
+        for (Club clubItem : clubs) {
+            if (Objects.equals(clubItem.id(), id)) {
+                return new Club(id, club.name(), club.city(), club.sport());
+            }
+
+        }
+        return null;
+    }
+    public boolean delete(Long id){
+        return clubs.removeIf(club -> club.id().equals(id));
+    }
+
 }

@@ -1,0 +1,3 @@
+@PathVariable  → /clubs/5
+@RequestParam  → /clubs?city=Biskra
+@RequestBody   → JSON داخل POST

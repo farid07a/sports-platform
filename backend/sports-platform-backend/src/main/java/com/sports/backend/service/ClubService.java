@@ -12,6 +12,7 @@ public class ClubService {
     private final ClubRepository clubRepository;
 
     public ClubService(ClubRepository clubRepository){
+
         this.clubRepository = clubRepository;
     }
 
@@ -34,5 +35,15 @@ public class ClubService {
     public Club createClub(Club club) {
         return clubRepository.save(club);
     }
+
+    public Club updateClub(Long id,Club club){
+        return clubRepository.update(id, club);
+    }
+
+    public boolean deleteClub(Long id){
+        return clubRepository.delete(id);
+    }
+
+
 
 }
