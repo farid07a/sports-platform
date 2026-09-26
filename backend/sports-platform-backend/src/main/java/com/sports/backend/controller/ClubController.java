@@ -1,6 +1,8 @@
 package com.sports.backend.controller;
 
 
+import com.sports.backend.dto.ClubRequest;
+import com.sports.backend.dto.ClubResponse;
 import com.sports.backend.model.Club;
 import com.sports.backend.service.ClubService;
 import jakarta.validation.Valid;
@@ -22,9 +24,61 @@ public class ClubController {
 
 
     @GetMapping
-    public List<Club> getAllClubs(){
+    public List<ClubResponse> getAllClubs(){
+
         return this.clubService.getAllClubs();
     }
+
+    @GetMapping("/{id}")
+    public ClubResponse getClubById(@PathVariable Long id){
+        return clubService.getClubById(id);
+    }
+
+    @GetMapping("/city/{city}")
+    public List<ClubResponse> findByCity(@PathVariable String city){
+        return clubService.findByCity(city);
+    }
+
+    @GetMapping("/sport/{sport}")
+    public List<ClubResponse> findBySport(@PathVariable String sport){
+
+        return clubService.findBySport(sport);
+    }
+
+    @PutMapping("/{id}")
+    public ClubResponse updateClub(
+            @PathVariable Long id,
+             @Valid @RequestBody ClubRequest request){
+        return clubService.updateClub(id,request);
+    }
+
+
+    @PostMapping
+    public ResponseEntity<ClubResponse> createClub(@Valid @RequestBody ClubRequest request){
+
+        ClubResponse response = clubService.createClub(request);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteClube(@PathVariable Long id){
+        clubService.deleteClub(id);
+        return ResponseEntity.noContent().build();
+
+    }
+
+    @GetMapping("/search")
+    public List<ClubResponse> searchClubs(
+            @RequestParam String city,
+            @RequestParam String sport) {
+
+        return clubService.searchClubs(city, sport);
+    }
+
+
 
 /*
     @GetMapping("/{id}")
@@ -33,10 +87,14 @@ public class ClubController {
     }
 */
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Club> getClubById(@PathVariable Long id) {
 
-    Club club = clubService.getClubById(id);
+    /*
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClubResponse> getClubById(@PathVariable Long id) {
+
+    ClubResponse club = clubService.getClubById(id);
 
     if (club == null) {
         return ResponseEntity.notFound().build();
@@ -57,17 +115,20 @@ public class ClubController {
     }
 
     @PostMapping
-    public Club createClub(@Valid @RequestBody Club club) {
+    public ResponseEntity<ClubResponse> createClub(@Valid @RequestBody ClubRequest request) {
 
-        Club createdClub = clubService.createClub(club);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdClub).getBody();
+        ClubResponse clubResponse = clubService.createClub(request);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(clubResponse);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Club> updateClub(@PathVariable Long id, @RequestBody Club club){
-        Club clubUpdate=clubService.updateClub(id,club);
-        if (clubUpdate==null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(clubUpdate);
+    public ResponseEntity<ClubResponse> updateClub(@PathVariable Long id, @Valid @RequestBody ClubRequest request){
+        ClubResponse clubResponse=clubService.updateClub(id,request);
+        if (clubResponse==null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(clubResponse);
     }
 
     @DeleteMapping("/{id}")
@@ -78,4 +139,6 @@ public class ClubController {
             return ResponseEntity.notFound().build();
         return ResponseEntity.noContent().build(); //204 No Content
     }
+
+     */
 }

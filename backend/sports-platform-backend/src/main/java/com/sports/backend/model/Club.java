@@ -1,17 +1,64 @@
 package com.sports.backend.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-public record Club(
+@Entity
+@Table(name = "clubs")
+public class Club{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-                    Long id,
+    //@NotBlank(message = "Name is required") use in ClubRequest
 
-                    @NotBlank(message = "Name is required")
-                    String name,
-                    @NotBlank
-                    String city,
-                    @NotBlank
-                    String sport
-                   )
-{
+    String name;
+    //@NotBlank
+    String city;
+    //@NotBlank
+    String sport;
+
+    public Club() {
+    }
+
+    public Club(Long id, String name, String city, String sport) {
+        this.id = id;
+        this.name = name;
+        this.city = city;
+        this.sport = sport;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getSport() {
+        return sport;
+    }
+
+    public void setSport(String sport) {
+        this.sport = sport;
+    }
 }
+
+

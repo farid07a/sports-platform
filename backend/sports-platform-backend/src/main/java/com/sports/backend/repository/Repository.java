@@ -1,15 +1,14 @@
 package com.sports.backend.repository;
 
 import com.sports.backend.model.Club;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Repository
-public class ClubRepository {
+@org.springframework.stereotype.Repository
+public class Repository {
 
     
      private final List<Club> clubs = new ArrayList<Club>(List.of(
@@ -25,7 +24,7 @@ public class ClubRepository {
     public Club findById(Long id) {
 
         return clubs.stream()
-                .filter(club -> club.id().equals(id))
+                .filter(club -> club.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
@@ -34,27 +33,27 @@ public class ClubRepository {
     public List<Club> findBySport(String sport) {
 
         return clubs.stream()
-            .filter(club -> club.sport().equalsIgnoreCase(sport))
+            .filter(club -> club.getSport().equalsIgnoreCase(sport))
             .collect(Collectors.toList());
     }
 
     public List<Club> findByCity(String city){
         return clubs.stream()
-                .filter(club -> club.city().equalsIgnoreCase(city))
+                .filter(club -> club.getCity().equalsIgnoreCase(city))
                 .collect(Collectors.toList());
     }
 
     public Club save(Club club){
         Long newId = clubs.stream()
-                .mapToLong(Club::id)
+                .mapToLong(Club::getId)
                 .max()
                 .orElse(0) + 1;
 
         Club newClub = new Club(
                 newId,
-                club.name(),
-                club.city(),
-                club.sport()
+                club.getName(),
+                club.getCity(),
+                club.getSport()
         );
 
         clubs.add(newClub);
@@ -63,18 +62,19 @@ public class ClubRepository {
 
     }
 
-    public Club update(Long id,Club club){
+    public Club update(Long id, Club club){
 
         for (Club clubItem : clubs) {
-            if (Objects.equals(clubItem.id(), id)) {
-                return new Club(id, club.name(), club.city(), club.sport());
+            if (Objects.equals(clubItem.getId(), id)) {
+
+                return new Club(id, club.getName(), club.getName(), club.getSport());
             }
 
         }
         return null;
     }
     public boolean delete(Long id){
-        return clubs.removeIf(club -> club.id().equals(id));
+        return clubs.removeIf(club -> club.getId().equals(id));
     }
 
 }
