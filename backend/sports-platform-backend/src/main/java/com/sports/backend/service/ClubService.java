@@ -8,11 +8,16 @@ import com.sports.backend.mapper.ClubMapper;
 import com.sports.backend.model.Club;
 import com.sports.backend.repository.IClubRepository;
 import com.sports.backend.repository.Repository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
+
+
 
 @Service
 public class ClubService {
@@ -93,13 +98,40 @@ public class ClubService {
         repositoryClub.delete(club);
     }
 
-    public List<ClubResponse> searchClubs(@RequestParam String city,
-                                          @RequestParam String sport){
+    public List<ClubResponse> searchClubs(String city,
+                                          String sport){
 
-        return repositoryClub.findByCityAndSport(city, sport)
+        boolean hasCity = StringUtils.hasText(city);
+        boolean hadSport = StringUtils.hasText(sport);
+        if (!hasCity && !hadSport)
+            throw new IndexOutOfBoundsException("At least one search parameter is required");
+
+        if (hasCity && hadSport)
+        //if (city!=null && sport!=null)
+
+            return repositoryClub.findByCityAndSport(city, sport)
                 .stream()
                 .map(clubMapper::toResponse)
                 .toList();
+
+        if(hasCity)
+        //if(city!=null)
+            return repositoryClub.findByCity(city)
+                    .stream()
+                    .map(clubMapper::toResponse)
+                    .toList();
+        return repositoryClub.findBySport(sport).
+                stream()
+                .map(clubMapper::toResponse)
+                .toList();
+
+    }
+
+    public Page<ClubResponse> getAllClubs(Pageable pageable) {
+
+        return repositoryClub
+                .findAll(pageable)
+                .map(clubMapper::toResponse);
     }
 
 

@@ -9,6 +9,35 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;
+/**
+ * JSON
+ *  ↓
+ * @RequestBody
+ *  ↓
+ * ClubRequest Object
+ *  ↓
+ * @Valid
+ *  ↓
+ * @NotBlank / @Size ...
+ *  ↓
+ * ❌ Validation failed
+ *  ↓
+ * MethodArgumentNotValidException
+ *  ↓
+ * @RestControllerAdvice
+ *  ↓
+ * GlobalExceptionHandler
+ *  ↓
+ * handleValidationErrors()
+ *  ↓
+ * ErrorResponse
+ *  ↓
+ * HTTP Response
+ *  ↓
+ * Frontend / Postman
+ *@Valid لا يتحقق من JSON نفسه مباشرة، بل Spring يحول الـ JSON إلى ClubRequest ثم يقوم بالـ validation على الـ object.
+ * **/
+
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -61,4 +90,20 @@ public class GlobalExceptionHandler {
 
 
     }
+
+    @ExceptionHandler(InvalidSearchException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidSearch(InvalidSearchException ex){
+        ErrorResponse response = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
+        );
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(response);
+
+    }
+
+
+
 }

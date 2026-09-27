@@ -6,6 +6,8 @@ import com.sports.backend.dto.ClubResponse;
 import com.sports.backend.model.Club;
 import com.sports.backend.service.ClubService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -72,12 +74,18 @@ public class ClubController {
 
     @GetMapping("/search")
     public List<ClubResponse> searchClubs(
-            @RequestParam String city,
-            @RequestParam String sport) {
+            @RequestParam (required = false)  String city,
+            @RequestParam (required = false) String sport) {
 
         return clubService.searchClubs(city, sport);
     }
 
+    @GetMapping
+    public Page<ClubResponse> getAllClubs(
+            Pageable pageable) {
+
+        return clubService.getAllClubs(pageable);
+    }
 
 
 /*
