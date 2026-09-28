@@ -80,8 +80,8 @@ public class ClubController {
         return clubService.searchClubs(city, sport);
     }
 
-    @GetMapping
-    public Page<ClubResponse> getAllClubs(
+    @GetMapping("/page")
+    public Page<ClubResponse> getAllClubsByPage(
             Pageable pageable) {
 
         return clubService.getAllClubs(pageable);

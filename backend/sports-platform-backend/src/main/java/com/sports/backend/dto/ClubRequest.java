@@ -12,7 +12,7 @@ public record ClubRequest(
         *
          */
 
-        @Size(max = 10,message = "Name must not exceed 100 characters")
+        @Size(max = 100,message = "Name must not exceed 100 characters")
         @NotBlank(message = "Name is required")
         String name,
         @Size(max = 100,message = "Name must not exceed 100 characters")
