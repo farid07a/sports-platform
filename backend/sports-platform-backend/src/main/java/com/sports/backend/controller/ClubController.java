@@ -81,6 +81,20 @@ public class ClubController {
         return clubService.searchClubs(city, sport);
     }
 
+
+    // GET http://localhost:8080/api/clubs/page?page=0&size=5&sort=city,desc
+    /*
+        * Pageable
+     ├── page = 0
+     ├── size = 5
+     └── sort = name ASC
+     * after that clubRepository.findAll(pageable) with Spring Data JPA/Hibernate make query like
+     * SELECT *
+        FROM club
+        ORDER BY name ASC
+        LIMIT 5
+        OFFSET 0;
+    * */
     @GetMapping("/page")
     public Page<ClubResponse> getAllClubsByPage(
             Pageable pageable) {
@@ -88,6 +102,36 @@ public class ClubController {
         return clubService.getAllClubs(pageable);
     }
 
+
+    // GET /api/clubs/city/Biskra?page=0&size=2
+    // GET /api/clubs/city/Biskra?page=0&size=2&sort=name,asc
+    @GetMapping("/page/city/{city}")
+    public Page<ClubResponse> findByCity(
+            @PathVariable String city,
+            Pageable pageable) {
+
+        return clubService.findByCity(city, pageable);
+    }
+
+    @GetMapping("/page/sport/{sport}")
+    public Page<ClubResponse> findBySport(
+            @PathVariable String sport,
+            Pageable pageable) {
+
+        return clubService.findBySport(sport, pageable);
+    }
+
+    @GetMapping("/page/search")
+    public Page<ClubResponse> searchClubs(
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String sport,
+            Pageable pageable) {
+
+        return clubService.searchClubs(
+                city,
+                sport,
+                pageable);
+    }
 
 /*
     @GetMapping("/{id}")

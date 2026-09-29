@@ -4,6 +4,7 @@ package com.sports.backend.service;
 import com.sports.backend.dto.ClubRequest;
 import com.sports.backend.dto.ClubResponse;
 import com.sports.backend.exception.ClubNotFoundException;
+import com.sports.backend.exception.InvalidSearchException;
 import com.sports.backend.mapper.ClubMapper;
 import com.sports.backend.model.Club;
 import com.sports.backend.repository.IClubRepository;
@@ -120,6 +121,7 @@ public class ClubService {
                     .stream()
                     .map(clubMapper::toResponse)
                     .toList();
+
         return repositoryClub.findBySport(sport).
                 stream()
                 .map(clubMapper::toResponse)
@@ -134,10 +136,58 @@ public class ClubService {
                 .map(clubMapper::toResponse);
     }
 
+    /*****************************************************************/
 
+    public Page<ClubResponse> findByCity(
+            String city,
+            Pageable pageable) {
 
+        return repositoryClub
+                .findByCity(city, pageable)
+                .map(clubMapper::toResponse);
+    }
 
-    /*******************************************************************/
+    public Page<ClubResponse> findBySport(
+            String sport,
+            Pageable pageable) {
+
+        return repositoryClub
+                .findBySport(sport, pageable)
+                .map(clubMapper::toResponse);
+    }
+
+    public Page<ClubResponse> searchClubs(
+            String city,
+            String sport,
+            Pageable pageable) {
+
+        boolean hasCity = StringUtils.hasText(city);
+        boolean hasSport = StringUtils.hasText(sport);
+
+        if (!hasCity && !hasSport) {
+            throw new InvalidSearchException(
+                    "At least one search parameter is required");
+        }
+
+        if (hasCity && hasSport) {
+
+            return repositoryClub
+                    .findByCityAndSport(city, sport, pageable)
+                    .map(clubMapper::toResponse);
+        }
+
+        if (hasCity) {
+
+            return repositoryClub
+                    .findByCity(city, pageable)
+                    .map(clubMapper::toResponse);
+        }
+
+        return repositoryClub
+                .findBySport(sport, pageable)
+                .map(clubMapper::toResponse);
+    }
+
     /*
     public ClubService(Repository repository){
 
