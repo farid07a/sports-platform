@@ -3,6 +3,7 @@ package com.sports.backend.controller;
 
 import com.sports.backend.dto.ClubRequest;
 import com.sports.backend.dto.ClubResponse;
+import com.sports.backend.dto.PageResponse;
 import com.sports.backend.model.Club;
 import com.sports.backend.service.ClubService;
 import jakarta.validation.Valid;
@@ -96,8 +97,10 @@ public class ClubController {
         OFFSET 0;
     * */
     @GetMapping("/page")
-    public Page<ClubResponse> getAllClubsByPage(
+    public PageResponse<ClubResponse> getAllClubsByPage(
             Pageable pageable) {
+    //public Page<ClubResponse> getAllClubsByPage(
+
 
         return clubService.getAllClubs(pageable);
     }
@@ -105,8 +108,10 @@ public class ClubController {
 
     // GET /api/clubs/city/Biskra?page=0&size=2
     // GET /api/clubs/city/Biskra?page=0&size=2&sort=name,asc
+    // content json as ClubResponse
+    //public Page<ClubResponse> findByCity
     @GetMapping("/page/city/{city}")
-    public Page<ClubResponse> findByCity(
+    public PageResponse<ClubResponse> findByCity(
             @PathVariable String city,
             Pageable pageable) {
 
@@ -114,7 +119,8 @@ public class ClubController {
     }
 
     @GetMapping("/page/sport/{sport}")
-    public Page<ClubResponse> findBySport(
+    public PageResponse<ClubResponse> findBySport(
+    //public Page<ClubResponse> findBySport(
             @PathVariable String sport,
             Pageable pageable) {
 
@@ -122,7 +128,7 @@ public class ClubController {
     }
 
     @GetMapping("/page/search")
-    public Page<ClubResponse> searchClubs(
+    public PageResponse<ClubResponse> searchClubs(
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String sport,
             Pageable pageable) {

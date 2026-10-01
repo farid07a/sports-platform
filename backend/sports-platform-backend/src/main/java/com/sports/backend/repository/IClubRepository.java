@@ -1,5 +1,6 @@
 package com.sports.backend.repository;
 
+import com.sports.backend.dto.ClubResponse;
 import com.sports.backend.model.Club;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

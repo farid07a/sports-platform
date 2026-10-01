@@ -3,6 +3,7 @@ package com.sports.backend.service;
 
 import com.sports.backend.dto.ClubRequest;
 import com.sports.backend.dto.ClubResponse;
+import com.sports.backend.dto.PageResponse;
 import com.sports.backend.exception.ClubNotFoundException;
 import com.sports.backend.exception.InvalidSearchException;
 import com.sports.backend.mapper.ClubMapper;
@@ -45,6 +46,10 @@ public class ClubService {
                 .stream()
                 .map(clubMapper::toResponse)
                 .toList();
+
+
+
+
     }
 
     public ClubResponse createClub(ClubRequest request){
@@ -129,34 +134,60 @@ public class ClubService {
 
     }
 
-    public Page<ClubResponse> getAllClubs(Pageable pageable) {
+    //public Page<ClubResponse> getAllClubs(Pageable pageable) {
+    public PageResponse<ClubResponse> getAllClubs(Pageable pageable) {
 
-        return repositoryClub
+//            return repositoryClub
+//                .findAll(pageable)
+//                .map(clubMapper::toResponse);
+        Page page =  repositoryClub
                 .findAll(pageable)
                 .map(clubMapper::toResponse);
+
+        PageResponse<ClubResponse> pageResponse = new PageResponse<>(page.getContent(),page.getNumber(),page.getSize()
+        ,page.getTotalElements(),page.getTotalPages());
+
+//        return new PageResponse<>(
+//                page.getContent(),
+//                page.getNumber(),
+//                page.getSize(),
+//                page.getTotalElements(),
+//                page.getTotalPages()
+//        );
+
+        return PageResponse.from(page);
     }
 
     /*****************************************************************/
-
-    public Page<ClubResponse> findByCity(
+    public PageResponse<ClubResponse> findByCity(
+    //public Page<ClubResponse> findByCity(
             String city,
             Pageable pageable) {
 
-        return repositoryClub
+        Page<ClubResponse> page = repositoryClub
                 .findByCity(city, pageable)
                 .map(clubMapper::toResponse);
+
+        return PageResponse.from(page);
+//                .findByCity(city, pageable)
+//                .map(clubMapper::toResponse);
     }
 
-    public Page<ClubResponse> findBySport(
+    //public Page<ClubResponse> findBySport(
+    public PageResponse<ClubResponse> findBySport(
             String sport,
             Pageable pageable) {
 
-        return repositoryClub
+        Page<ClubResponse> page =  repositoryClub
                 .findBySport(sport, pageable)
                 .map(clubMapper::toResponse);
+
+        return PageResponse.from(page);
+
     }
 
-    public Page<ClubResponse> searchClubs(
+    //public Page<ClubResponse> searchClubs(
+    public PageResponse<ClubResponse> searchClubs(
             String city,
             String sport,
             Pageable pageable) {
@@ -171,21 +202,26 @@ public class ClubService {
 
         if (hasCity && hasSport) {
 
-            return repositoryClub
+            Page page =  repositoryClub
                     .findByCityAndSport(city, sport, pageable)
                     .map(clubMapper::toResponse);
+
+            return PageResponse.from(page);
         }
 
         if (hasCity) {
 
-            return repositoryClub
+            Page page =  repositoryClub
                     .findByCity(city, pageable)
                     .map(clubMapper::toResponse);
+
+            return PageResponse.from(page);
         }
 
-        return repositoryClub
+        Page page =  repositoryClub
                 .findBySport(sport, pageable)
                 .map(clubMapper::toResponse);
+        return PageResponse.from(page);
     }
 
     /*
