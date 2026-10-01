@@ -3,6 +3,9 @@ package com.sports.backend.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "clubs")
 public class Club{
@@ -17,6 +20,11 @@ public class Club{
     String city;
     //@NotBlank
     String sport;
+
+    @OneToMany(mappedBy = "club")// العلاقة موجودة أصلاً ومُدارة من الخاصية club الموجودة داخل Player.
+    private List<Player> players  = new ArrayList<>();
+    /*فـ "club" ليس اسم العمود في قاعدة البيانات.
+إنه اسم المتغير في Player: */
 
     public Club() {
     }
@@ -58,6 +66,11 @@ public class Club{
 
     public void setSport(String sport) {
         this.sport = sport;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+
     }
 }
 
