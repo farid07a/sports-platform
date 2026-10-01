@@ -21,9 +21,11 @@ public class PlayerService {
     }
 
     public PlayerResponse createPlayer(PlayerRequest request){
+
         Optional<Club> club = Optional.ofNullable(clubRepository.findById(request.clubId()).orElse(null));
         if (club.isEmpty()) return null;
         Player savedPlayer = new Player(null,request.name(),request.position());
+        savedPlayer.setClub(club.get());
         Player player = playerRepository.save(savedPlayer);
 
         return new PlayerResponse(player.getId(),player.getName(),player.getPosition());

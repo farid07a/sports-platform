@@ -60,6 +60,7 @@ public class Player {
     public Club getClub() {
         return club;
     }
+
     public void setClub(Club club) {
         this.club = club;
     }
