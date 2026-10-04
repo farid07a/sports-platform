@@ -1,12 +1,14 @@
 package com.sports.backend.controller;
 
 
+import com.sports.backend.dto.PageResponse;
 import com.sports.backend.dto.PlayerRequest;
 import com.sports.backend.dto.PlayerResponse;
 import com.sports.backend.model.Player;
 import com.sports.backend.service.PlayerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +35,35 @@ public class PlayerController {
 
     @GetMapping
     public List<PlayerResponse> getAllPlayers(){
-        return playerService.;
+
+        return playerService.getAllPlayers();
     }
+
+    @GetMapping("/page")
+    public PageResponse<PlayerResponse> getAllPlayers(
+            Pageable pageable) {
+
+        return playerService.getAllPlayers(pageable);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PlayerResponse> getPlayerById(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                playerService.getPlayerById(id)
+        );
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PlayerResponse> updatePlayer(
+            @PathVariable Long id,
+            @Valid @RequestBody PlayerRequest request) {
+
+        PlayerResponse response =
+                playerService.updatePlayer(id, request);
+
+        return ResponseEntity.ok(response);
+    }
+
 }
