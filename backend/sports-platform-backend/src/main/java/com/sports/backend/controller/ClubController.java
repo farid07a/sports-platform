@@ -71,7 +71,6 @@ public class ClubController {
     public ResponseEntity<Void> deleteClube(@PathVariable Long id){
         clubService.deleteClub(id);
         return ResponseEntity.noContent().build();
-
     }
 
     @GetMapping("/search")

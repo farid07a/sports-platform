@@ -125,5 +125,17 @@ public class PlayerService {
         return playerMapper.toResponse(updatedPlayer);
     }
 
+    public void deletePlayer(Long id){
+        Player player = playerRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException(
+                        STR."Player not found with id: \{id}") );
+
+        playerRepository.delete(player);
+    }
+
+    public List<PlayerResponse> findByClubId(Long clubId){
+        return playerRepository.findByClubId(clubId).stream().map(playerMapper::toResponse).toList();
+
+    }
 
 }

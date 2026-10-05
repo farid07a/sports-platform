@@ -66,4 +66,17 @@ public class PlayerController {
         return ResponseEntity.ok(response);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePlayer(@PathVariable Long id){
+        playerService.deletePlayer(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping("/club/{clubId}")
+    public List<PlayerResponse> getPlayersByClub(
+            @PathVariable Long clubId) {
+        return playerService.findByClubId(clubId);
+    }
+
 }
