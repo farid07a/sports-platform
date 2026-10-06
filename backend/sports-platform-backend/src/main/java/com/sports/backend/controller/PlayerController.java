@@ -4,6 +4,7 @@ package com.sports.backend.controller;
 import com.sports.backend.dto.PageResponse;
 import com.sports.backend.dto.PlayerRequest;
 import com.sports.backend.dto.PlayerResponse;
+import com.sports.backend.exception.ResourceNotFoundException;
 import com.sports.backend.model.Player;
 import com.sports.backend.service.PlayerService;
 import jakarta.validation.Valid;
@@ -79,4 +80,21 @@ public class PlayerController {
         return playerService.findByClubId(clubId);
     }
 
+    //@GetMapping("/club/{clubId}")
+    //    public List<PlayerResponse> getPlayersByClub(
+    //            @PathVariable Long clubId) {
+    //        return playerService.findByClubId(clubId);
+    //    }
+
+    @GetMapping("/club/page/{clubId}")
+    public PageResponse<PlayerResponse> getPlayersByClub(
+            @PathVariable Long clubId, Pageable pageable) {
+        return playerService.findByClubId(clubId,pageable);
+    }
+
+
+    @GetMapping("/search")
+    public PageResponse<PlayerResponse> searchPlayer(@RequestParam String name, Pageable pageable) {
+        return playerService.findByNameContainingIgnoreCase(name, pageable);
+    }
 }

@@ -36,7 +36,7 @@ public class PlayerService {
 
         //Optional<Club> club1 = Optional.ofNullable(clubRepository.findById(request.clubId()).orElse(null));
 
-        Optional<Club> club  = Optional.ofNullable(clubRepository.findById(request.clubId())
+        Optional<Club> club  = Optional.of(clubRepository.findById(request.clubId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         " \"Club not found with id: \" + request.clubId()")
                 ));
@@ -135,7 +135,23 @@ public class PlayerService {
 
     public List<PlayerResponse> findByClubId(Long clubId){
         return playerRepository.findByClubId(clubId).stream().map(playerMapper::toResponse).toList();
+    }
 
+    public PageResponse<PlayerResponse> findByClubId(Long clubId, Pageable pageable){
+        clubRepository.findById(clubId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Club not found with id: " + clubId
+                        )
+                );
+
+        Page page = playerRepository.findByClubId(clubId,pageable).map(playerMapper::toResponse);
+        return PageResponse.from(page);
+    }
+
+    public PageResponse<PlayerResponse> findByNameContainingIgnoreCase(String name,Pageable pageable){
+        Page page =  playerRepository.findByNameContainingIgnoreCase(name,pageable).map(playerMapper::toResponse);
+        return PageResponse.from(page) ;
     }
 
 }
