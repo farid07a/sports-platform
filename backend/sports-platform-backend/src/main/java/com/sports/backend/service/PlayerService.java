@@ -10,8 +10,10 @@ import com.sports.backend.model.Club;
 import com.sports.backend.model.Player;
 import com.sports.backend.repository.IClubRepository;
 import com.sports.backend.repository.IPlayerRepository;
+import com.sports.backend.specification.PlayerSpecification;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 //import java.awt.print.Pageable;
@@ -154,4 +156,89 @@ public class PlayerService {
         return PageResponse.from(page) ;
     }
 
+    public PageResponse<PlayerResponse> searchByName(String name,Pageable pageable){
+        Page<PlayerResponse> page = playerRepository.findAll(PlayerSpecification.hasName(name),pageable)
+                .map(playerMapper::toResponse);
+        return PageResponse.from(page);
+
+    }
+
+
+    public PageResponse<PlayerResponse> searchPlayers(
+            String name,
+            String position,
+            Pageable pageable) {
+
+        Specification<Player> specification = null;
+
+        if (name != null && !name.isBlank()) {
+            specification = PlayerSpecification.hasName(name);
+        }
+
+        if (position != null && !position.isBlank()) {
+            Specification<Player> positionSpec =
+                    PlayerSpecification.hasPosition(position);
+
+            specification = specification == null
+                    ? positionSpec
+                    : specification.and(positionSpec);
+        }
+
+        Page<PlayerResponse> page;
+
+        if (specification == null) {
+            page = playerRepository.findAll(pageable)
+                    .map(playerMapper::toResponse);
+        } else {
+            page = playerRepository.findAll(specification, pageable)
+                    .map(playerMapper::toResponse);
+        }
+
+        return PageResponse.from(page);
+    }
+
+
+    public PageResponse<PlayerResponse> searchPlayers(
+            String name,
+            String position,
+            Long clubId,
+            Pageable pageable){
+
+        Specification<Player> specification = null;
+
+        if (name != null && !name.isBlank()) {
+            specification = PlayerSpecification.hasName(name);
+        }
+
+        if (position != null && !position.isBlank()) {
+            Specification<Player> positionSpec =
+                    PlayerSpecification.hasPosition(position);
+
+            specification = specification == null
+                    ? positionSpec
+                    : specification.and(positionSpec);
+        }
+
+        if (clubId != null) {
+
+            Specification<Player> clubSpec =
+                    PlayerSpecification.hasClubId(clubId);
+
+            specification = specification == null
+                    ? clubSpec
+                    : specification.and(clubSpec);
+        }
+
+        Page<PlayerResponse> page;
+
+        if (specification == null) {
+            page = playerRepository.findAll(pageable)
+                    .map(playerMapper::toResponse);
+        } else {
+            page = playerRepository.findAll(specification, pageable)
+                    .map(playerMapper::toResponse);
+        }
+
+        return PageResponse.from(page);
+    }
 }

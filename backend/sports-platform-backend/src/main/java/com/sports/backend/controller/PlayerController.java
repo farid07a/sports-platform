@@ -97,4 +97,37 @@ public class PlayerController {
     public PageResponse<PlayerResponse> searchPlayer(@RequestParam String name, Pageable pageable) {
         return playerService.findByNameContainingIgnoreCase(name, pageable);
     }
+
+    @GetMapping("/search/specification")
+    public PageResponse<PlayerResponse> searchByName(@RequestParam String name,Pageable pageable){
+        return playerService.searchByName(name,pageable);
+    }
+
+    @GetMapping("/search/specifications")
+    public PageResponse<PlayerResponse> searchPlayers(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String position,
+            Pageable pageable) {
+
+        return playerService.searchPlayers(
+                name,
+                position,
+                pageable
+        );
+    }
+
+    @GetMapping("/search/specifications/many")
+    public PageResponse<PlayerResponse> searchPlayers(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String position,
+            @RequestParam(required = false) Long clubId,
+            Pageable pageable) {
+
+        return playerService.searchPlayers(
+                name,
+                position,
+                clubId,
+                pageable
+        );
+    }
 }
