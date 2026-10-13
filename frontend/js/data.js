@@ -1,5 +1,5 @@
 
-const clubs=[
+const clubs2=[
     {
         id:1,
         name:"Biskra CITY",

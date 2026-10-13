@@ -4,6 +4,7 @@ import com.sports.backend.dto.PageResponse;
 import com.sports.backend.dto.PlayerRequest;
 import com.sports.backend.dto.PlayerResponse;
 import com.sports.backend.exception.ClubNotFoundException;
+import com.sports.backend.exception.InvalidSearchException;
 import com.sports.backend.exception.ResourceNotFoundException;
 import com.sports.backend.mapper.PlayerMapper;
 import com.sports.backend.model.Club;
@@ -204,29 +205,43 @@ public class PlayerService {
             Long clubId,
             Pageable pageable){
 
+        if ((name == null || name.isBlank())
+                && (position == null || position.isBlank())
+                && clubId == null) {
+
+            throw new InvalidSearchException(
+                    "At least one search parameter is required"
+            );
+        }
+
         Specification<Player> specification = null;
 
         if (name != null && !name.isBlank()) {
-            specification = PlayerSpecification.hasName(name);
+            //specification = PlayerSpecification.hasName(name);
+
+            specification=addSpecification(specification,PlayerSpecification.hasName(name));
         }
 
         if (position != null && !position.isBlank()) {
-            Specification<Player> positionSpec =
-                    PlayerSpecification.hasPosition(position);
+//            Specification<Player> positionSpec =
+//                    PlayerSpecification.hasPosition(position);
+//
+//            specification = specification == null
+//                    ? positionSpec
+//                    : specification.and(positionSpec);
 
-            specification = specification == null
-                    ? positionSpec
-                    : specification.and(positionSpec);
+            specification=addSpecification(specification,PlayerSpecification.hasPosition(position));
         }
 
         if (clubId != null) {
 
-            Specification<Player> clubSpec =
-                    PlayerSpecification.hasClubId(clubId);
-
-            specification = specification == null
-                    ? clubSpec
-                    : specification.and(clubSpec);
+//            Specification<Player> clubSpec =
+//                    PlayerSpecification.hasClubId(clubId);
+//
+//            specification = specification == null
+//                    ? clubSpec
+//                    : specification.and(clubSpec);
+            specification=addSpecification(specification,PlayerSpecification.hasClubId(clubId));
         }
 
         Page<PlayerResponse> page;
@@ -241,4 +256,17 @@ public class PlayerService {
 
         return PageResponse.from(page);
     }
+
+
+    private Specification<Player> addSpecification(
+            Specification<Player> current,
+            Specification<Player> next) {
+
+        if (current == null) {
+            return next;
+        }
+
+        return current.and(next);
+    }
+
 }

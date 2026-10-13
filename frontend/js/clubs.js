@@ -4,6 +4,36 @@ const sportFilter = document.getElementById("sport-filter");
 const noClubsMessage = document.getElementById("no-clubs-message");
 
 
+// The clubs will now come from the Spring Boot API.
+let clubs = [];
+
+// Load clubs from the backend.
+async function loadClubs() {
+    try {
+        const response = await fetch("http://localhost:8080/api/clubs");
+
+        if (!response.ok) {
+            throw new Error("Failed to load clubs");
+        }
+
+        clubs = await response.json();
+
+        // Display the clubs received from the backend.
+        applyFilters();
+
+    } catch (error) {
+        console.error("Error loading clubs:", error);
+
+        clubGrid.innerHTML = "";
+        noClubsMessage.textContent =
+            "Unable to load clubs. Please try again later.";
+        noClubsMessage.style.display = "block";
+    }
+}
+
+
+
+
 function renderClubs(clubsToRender) {
 
     clubGrid.innerHTML = "";
@@ -20,7 +50,7 @@ function renderClubs(clubsToRender) {
         const card = document.createElement("article");
 
         card.classList.add("club-card");
-        console.log("Image Path is:"+item.image)
+        //console.log("Image Path is:"+item.image)
         card.innerHTML = `
             <img
                 src="${item.image}"
@@ -72,9 +102,11 @@ function applyFilters() {
     renderClubs(filteredClubs);
 }
 
+loadClubs();
 
 renderClubs(clubs);
 
 searchInput.addEventListener("input", applyFilters);
 
 sportFilter.addEventListener("change", applyFilters);
+
