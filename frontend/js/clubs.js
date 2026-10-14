@@ -21,6 +21,8 @@ async function loadClubs() {
         // Display the clubs received from the backend.
         applyFilters();
 
+
+
     } catch (error) {
         console.error("Error loading clubs:", error);
 

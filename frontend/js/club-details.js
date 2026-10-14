@@ -189,6 +189,7 @@ async function renderClubDetails() {
     const params = new URLSearchParams(window.location.search);
     const clubId = Number(params.get("id"));
 
+
     const detailsSection = document.getElementById("club-details");
     const playersSection = document.getElementById("club-players");
     const matchesSection = document.getElementById("club-matches");
@@ -217,6 +218,8 @@ async function renderClubDetails() {
         // 5. Convert the JSON response into a JavaScript object.
         const selectedClub = await response.json();
 
+        console.log("get data by api in backend")
+
         // 6. Display the club details section.
         detailsSection.style.display = "block";
         playersSection.style.display = "block";
@@ -239,11 +242,22 @@ async function renderClubDetails() {
         clubImage.alt = selectedClub.name;
 
         // 9. Keep the existing players and matches functions.
-        renderPlayers(clubId);
-        renderMatches(clubId);
+
+
+        // renderPlayers(clubId);
+        // renderMatches(clubId);
+
+        document.getElementById("players-list").innerHTML =
+            '<p class="empty-message">Players will be loaded soon.</p>';
+
+        document.getElementById("matches-list").innerHTML =
+            '<p class="empty-message">Matches will be loaded soon.</p>';
 
     } catch (error) {
         console.error("Error loading club:", error);
+
+        notFound.textContent =
+            "Error loading club: " + error.message;
 
         detailsSection.style.display = "none";
         playersSection.style.display = "none";
